@@ -9,6 +9,7 @@ import {
   Font,
   Preview,
 } from '@react-email/components';
+import emailIcon from "../../public/email.svg";
 import * as React from 'react';
 
 // Sample data for testing
@@ -734,7 +735,12 @@ const TeamMembersEmail = ({
                                         href={`mailto:${member.email}`}
                                         style={iconLink}
                                       >
-                                        
+                                        <Img
+                                          src={"http://localhost:3000/email.svg"}
+                                          alt="email svg"
+                                          width="20"
+                                          height="20"
+                                        />
                                       </a>
                                     </td>
                                     <td style={iconCell}>
@@ -742,7 +748,12 @@ const TeamMembersEmail = ({
                                         href={`tel:${member.cellphone}`}
                                         style={iconLink}
                                       >
-                                        
+                                        <Img
+                                          src={"http://localhost:3000/phone.svg"}
+                                          alt="phone svg"
+                                          width="20"
+                                          height="20"
+                                        />
                                       </a>
                                     </td>
                                     <td style={iconCell}>
@@ -752,7 +763,12 @@ const TeamMembersEmail = ({
                                         target="_blank"
                                         rel="noopener noreferrer"
                                       >
-                                        
+                                        <Img
+                                          src={"http://localhost:3000/linkedIn.svg"}
+                                          alt="linkedIn svg"
+                                          width="20"
+                                          height="20"
+                                        />
                                       </a>
                                     </td>
                                   </tr>
