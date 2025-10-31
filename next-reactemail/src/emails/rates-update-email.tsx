@@ -8,8 +8,8 @@ import {
   Text,
   Font,
   Preview,
+  Tailwind,
 } from '@react-email/components';
-import emailIcon from "../../public/email.svg";
 import * as React from 'react';
 
 // Sample data for testing
@@ -72,586 +72,633 @@ export default function RatesUpdateEmail({
   });
 
   return (
-    <Html>
-      <Head>
-        <title>Rates Update</title>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0"
-        />
-        <Font
-          fontFamily="Old Standard TT"
-          fallbackFontFamily="serif"
-          webFont={{
-            url: 'https://fonts.gstatic.com/s/oldstandardtt/v13/MwQubh3o1vLImiwAVvYawgcf2eVWEX-dTFxeb80.woff2',
-            format: 'woff2',
-          }}
-        />
-        <Font
-          fontFamily="Open Sans"
-          fallbackFontFamily="sans-serif"
-          webFont={{
-            url: 'https://fonts.gstatic.com/s/opensans/v34/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2',
-            format: 'woff2',
-          }}
-        />
-      </Head>
-      <Body
-        style={{
-          margin: 0,
-          padding: 0,
-          // backgroundColor: '#a48b52',
-          fontFamily: "'Open Sans', Arial, sans-serif",
-          lineHeight: 1.6,
-        }}
-      >
-        <Container
+    <Tailwind>
+      <Html>
+        <Head>
+          <title>Rates Update</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta content='light dark' name='color-scheme' />
+          <meta content='light dark' name='supported-color-schemes' />
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `
+                @media (prefers-color-scheme: dark) {
+                    /* Hide the light logo, show the dark logo */
+                    .logo.light {
+                        display: none !important;
+                    }
+                    .logo.dark {
+                        display: block !important;
+                    }
+                    /* Override background for the entire body/email canvas */
+                    body {
+                      background-color: "#020101" !important;
+                    }
+                    /* Custom styles for components */
+                    a[data-id*="react-email-button"] {
+                        background-color:  "#020101" !important;
+                        color: #ffffff !important;
+                    }
+                    /* Target Text and Heading components to ensure white text */
+                    [data-id*="react-email-heading"],
+                    [data-id*="react-email-text"] {
+                      color: #ffffff !important;
+                    }
+                }
+              `,
+            }}
+          />
+          <Font
+            fontFamily="Old Standard TT"
+            fallbackFontFamily="serif"
+            webFont={{
+              url: 'https://fonts.gstatic.com/s/oldstandardtt/v13/MwQubh3o1vLImiwAVvYawgcf2eVWEX-dTFxeb80.woff2',
+              format: 'woff2',
+            }}
+          />
+          <Font
+            fontFamily="Open Sans"
+            fallbackFontFamily="sans-serif"
+            webFont={{
+              url: 'https://fonts.gstatic.com/s/opensans/v34/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2',
+              format: 'woff2',
+            }}
+          />
+        </Head>
+        <Body
           style={{
+            margin: 0,
+            padding: 0,
             // backgroundColor: '#a48b52',
-            maxWidth: '600px',
-            margin: '0 auto',
+            fontFamily: "'Open Sans', Arial, sans-serif",
+            lineHeight: 1.6,
           }}
         >
-          <Section style={{ padding: '20px 0' }}>
-            <Container
-              style={{
-                maxWidth: '600px',
-                width: '100%',
-                backgroundColor: '#ffffff',
-                borderRadius: '8px',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-              }}
-            >
-              {/* Header */}
-              <Section
+          <Container
+            style={{
+              // backgroundColor: '#a48b52',
+              maxWidth: '600px',
+              margin: '0 auto',
+            }}
+          >
+            <Section style={{ padding: '20px 0' }}>
+              <Container
                 style={{
-                  backgroundColor: '#020101',
-                  borderRadius: '8px 8px 0 0',
-                  textAlign: 'center', // ✅ Centers the image horizontally
-                  paddingTop: '15px',
+                  maxWidth: '600px',
+                  width: '100%',
+                  backgroundColor: '#ffffff',
+                  borderRadius: '8px',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
                 }}
               >
-                <Img
-                  src="https://credit.largocapital.com/largo-logo-white.png"
-                  alt="Largo Logo"
-                  width="200"
+                {/* Header */}
+                <Section
+                  className='bg-[#020101] dark:bg-black'
                   style={{
-                    display: 'inline-block',
-                    height: 'auto',
-                  }}
-                />
-              </Section>
-
-              {/* Content */}
-              <Section style={{ padding: '40px 40px 20px 40px' }}>
-                <Text
-                  style={{
-                    margin: 0,
-                    color: '#a48b52',
-                    fontFamily: "'Open Sans', serif",
-                    fontSize: '28px',
-                    fontWeight: 600,
-                    letterSpacing: '5px',
+                    backgroundColor: '#020101',
+                    borderRadius: '8px 8px 0 0',
+                    textAlign: 'center', // ✅ Centers the image horizontally
+                    paddingTop: '15px',
                   }}
                 >
-                  RATES UPDATE
-                </Text>
+                  <span className='logo light'>
+                    <Img
+                      src="https://images.seeklogo.com/logo-png/40/2/discord-black-logo-png_seeklogo-404000.png"
+                      alt="Light Image Logo"
+                      width="200"
+                      style={{
+                        display: 'inline-block',
+                        height: 'auto',
+                      }}
+                    />
+                  </span>
+                  <span className='logo dark' style={{ display: 'none' }}>
+                    <Img
+                      src="https://credit.largocapital.com/largo-logo-white.png"
+                      alt="Largo Logo"
+                      width="200"
+                      style={{
+                        display: 'inline-block',
+                        height: 'auto',
+                      }}
+                    />
+                  </span>
+                </Section>
 
-                <table
-                  width="100%"
-                  cellPadding="0"
-                  cellSpacing="0"
+                {/* Content */}
+                <Section style={{ padding: '40px 40px 20px 40px' }}>
+                  <Text
+                    style={{
+                      margin: 0,
+                      color: '#a48b52',
+                      fontFamily: "'Open Sans', serif",
+                      fontSize: '28px',
+                      fontWeight: 600,
+                      letterSpacing: '5px',
+                    }}
+                  >
+                    RATES UPDATE
+                  </Text>
+
+                  <table
+                    width="100%"
+                    cellPadding="0"
+                    cellSpacing="0"
+                    style={{
+                      borderCollapse: 'collapse',
+                      margin: '30px 0',
+                      border: '2px solid #020101',
+                      borderRadius: '6px',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <thead>
+                      <tr>
+                        <th
+                          colSpan={2}
+                          style={{
+                            backgroundColor: '#a48b52',
+                            color: '#ffffff',
+                            padding: '15px',
+                            textAlign: 'left',
+                            fontFamily: "'Open Sans', Arial, sans-serif",
+                            fontWeight: 500,
+                            fontSize: '14px',
+                            borderBottom: '1px solid #a48b52',
+                          }}
+                        >
+                          {date}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr style={{ backgroundColor: '#f9f8f5' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          5 Year
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.treasury5y}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#ffffff' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          7 Year
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.treasury7y}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#f9f8f5' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          10 Year
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.treasury10y}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#ffffff' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          1 Month SOFR
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.sofr1MoTerm}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#f9f8f5' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          5 Year SOFR
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.sofr5y}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#ffffff' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          7 Year SOFR
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.sofr7y}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#f9f8f5' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          10 Year SOFR
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.sofr10y}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#ffffff' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          FHLB Boston 5 Year
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.fhlbBoston5y}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#f9f8f5' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          FHLB Boston 10 Year
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.fhlbBoston10y}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#ffffff' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          US Prime Rate
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.usPrimeRate}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#f9f8f5' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          CMB 5 Year
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.cmb5y}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#ffffff' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          CMB 10 Year
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.cmb10y}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#f9f8f5' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          CORRA - 1 Mo Term
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.corra1MoTerm}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#ffffff' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          CAD 5 Year
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.cad5y}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#f9f8f5' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          CAD 7 Year
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.cad7y}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#ffffff' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          CAD 10 Year
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.cad10y}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#f9f8f5' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          S&P 500
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.sp500}
+                        </td>
+                      </tr>
+                      <tr style={{ backgroundColor: '#ffffff' }}>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            color: '#020101',
+                            fontSize: '14px',
+                          }}
+                        >
+                          Dow Jones
+                        </td>
+                        <td
+                          style={{
+                            padding: '15px',
+                            borderBottom: '1px solid #d4c49c',
+                            textAlign: 'center',
+                            color: '#a48b52',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {rates.dowJones}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <TeamMembersEmail />
+                </Section>
+
+                {/* Footer */}
+                <Section
                   style={{
-                    borderCollapse: 'collapse',
-                    margin: '30px 0',
-                    border: '2px solid #020101',
-                    borderRadius: '6px',
-                    overflow: 'hidden',
+                    backgroundColor: '#020101',
+                    padding: '20px',
+                    textAlign: 'center',
+                    borderRadius: '0 0 8px 8px',
                   }}
                 >
-                  <thead>
-                    <tr>
-                      <th
-                        colSpan={2}
-                        style={{
-                          backgroundColor: '#a48b52',
-                          color: '#ffffff',
-                          padding: '15px',
-                          textAlign: 'left',
-                          fontFamily: "'Open Sans', Arial, sans-serif",
-                          fontWeight: 500,
-                          fontSize: '14px',
-                          borderBottom: '1px solid #a48b52',
-                        }}
-                      >
-                        {date}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr style={{ backgroundColor: '#f9f8f5' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        5 Year
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.treasury5y}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#ffffff' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        7 Year
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.treasury7y}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#f9f8f5' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        10 Year
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.treasury10y}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#ffffff' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        1 Month SOFR
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.sofr1MoTerm}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#f9f8f5' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        5 Year SOFR
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.sofr5y}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#ffffff' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        7 Year SOFR
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.sofr7y}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#f9f8f5' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        10 Year SOFR
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.sofr10y}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#ffffff' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        FHLB Boston 5 Year
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.fhlbBoston5y}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#f9f8f5' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        FHLB Boston 10 Year
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.fhlbBoston10y}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#ffffff' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        US Prime Rate
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.usPrimeRate}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#f9f8f5' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        CMB 5 Year
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.cmb5y}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#ffffff' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        CMB 10 Year
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.cmb10y}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#f9f8f5' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        CORRA - 1 Mo Term
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.corra1MoTerm}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#ffffff' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        CAD 5 Year
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.cad5y}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#f9f8f5' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        CAD 7 Year
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.cad7y}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#ffffff' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        CAD 10 Year
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.cad10y}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#f9f8f5' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        S&P 500
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.sp500}
-                      </td>
-                    </tr>
-                    <tr style={{ backgroundColor: '#ffffff' }}>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          color: '#020101',
-                          fontSize: '14px',
-                        }}
-                      >
-                        Dow Jones
-                      </td>
-                      <td
-                        style={{
-                          padding: '15px',
-                          borderBottom: '1px solid #d4c49c',
-                          textAlign: 'center',
-                          color: '#a48b52',
-                          fontSize: '14px',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {rates.dowJones}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                <TeamMembersEmail />
-              </Section>
-
-              {/* Footer */}
-              <Section
-                style={{
-                  backgroundColor: '#020101',
-                  padding: '20px',
-                  textAlign: 'center',
-                  borderRadius: '0 0 8px 8px',
-                }}
-              >
-                <Text
-                  style={{
-                    margin: '10px 0 15px 0',
-                    color: '#ffffff',
-                    fontSize: '14px',
-                    fontWeight: 500,
-                  }}
-                >
-                  © Largo Capital. All rights reserved
-                </Text>
-              </Section>
-            </Container>
-          </Section>
-        </Container>
-      </Body>
-    </Html>
+                  <Text
+                    style={{
+                      margin: '10px 0 15px 0',
+                      color: '#ffffff',
+                      fontSize: '14px',
+                      fontWeight: 500,
+                    }}
+                  >
+                    © Largo Capital. All rights reserved
+                  </Text>
+                </Section>
+              </Container>
+            </Section>
+          </Container>
+        </Body>
+      </Html>
+    </Tailwind>
   );
 }
 
